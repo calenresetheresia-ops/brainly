@@ -112,21 +112,21 @@ export const HomeFeatures: React.FC = () => (
   </section>
 );
 
-const SlantedTab: React.FC<{ label: string; color: string; bgColor: string }> = ({ label, color, bgColor }) => (
+const SlantedTab: React.FC<{ label: string; bgColor: string }> = ({ label, bgColor }) => (
   <div className="relative group cursor-pointer transition-transform hover:-translate-y-2">
-    {/* Outer glow effect */}
+    {/* Background Decorative Pill */}
     <div className="absolute -inset-1 rounded-2xl opacity-40 blur-sm bg-[#E0F3D7] group-hover:opacity-100 transition-opacity"></div>
     {/* Main Slanted Pill */}
     <div 
-      className="relative w-14 h-44 rounded-2xl flex flex-col items-center justify-center border-4 border-[#E0F3D7]"
+      className="relative w-[50px] h-[160px] rounded-2xl flex flex-col items-center justify-center border-4 border-[#E0F3D7]"
       style={{ 
         backgroundColor: bgColor, 
-        transform: 'skewX(-4deg) rotate(-4deg)',
+        transform: 'skewX(-2deg) rotate(-2deg)',
         boxShadow: '0 8px 15px -3px rgba(0,0,0,0.1)'
       }}
     >
       <span 
-        className="text-white font-bold text-xs uppercase whitespace-nowrap tracking-wider"
+        className="text-white font-bold text-[10px] uppercase whitespace-nowrap tracking-wider"
         style={{ transform: 'rotate(-90deg)' }}
       >
         {label}
@@ -144,21 +144,31 @@ const FeaturedCard: React.FC<{
   imageOnLeft?: boolean;
 }> = ({ image, title, desc, price, borderColor = "#49BBBD", imageOnLeft = true }) => (
   <div 
-    className="bg-white rounded-[32px] overflow-hidden flex flex-col sm:flex-row items-center p-6 gap-8 shadow-xl border-2 transition-transform hover:scale-[1.02]"
+    className="bg-white rounded-[32px] overflow-hidden flex flex-col sm:flex-row items-center p-8 gap-10 shadow-xl border-[3px] transition-all hover:shadow-2xl hover:scale-[1.01]"
     style={{ borderColor }}
   >
-    <div className={`w-full sm:w-1/2 rounded-2xl overflow-hidden aspect-[4/3] ${!imageOnLeft ? 'sm:order-2' : ''}`}>
+    <div className={`w-full sm:w-[45%] rounded-3xl overflow-hidden aspect-[4/3] relative shadow-inner ${!imageOnLeft ? 'sm:order-2' : ''}`}>
       <img src={image} className="w-full h-full object-cover" alt={title} />
+      {/* Pixel perfect overlay text placeholder as seen in design */}
+      <div className="absolute inset-0 flex flex-col items-center justify-center pointer-events-none">
+        <div className="bg-white/90 p-4 rounded-full flex flex-col items-center justify-center w-3/4 aspect-square shadow-lg">
+           <span className="text-secondary font-black text-xs tracking-tighter uppercase leading-none">Lorem</span>
+           <span className="text-[#2F327D] font-black text-xl tracking-tighter uppercase leading-none">Ipsum</span>
+           <span className="text-slate-400 text-[8px] mt-1 text-center">Lorem ipsum dolor sit amet</span>
+        </div>
+      </div>
     </div>
     <div className="flex-1 text-left">
-      <h4 className="text-xl font-bold text-[#2F327D] mb-4 leading-tight">{title}</h4>
-      <p className="text-slate-400 text-sm mb-6 leading-relaxed line-clamp-3">{desc}</p>
-      <div className="flex items-center gap-1 mb-6">
-        {[1,2,3,4,5].map(s => <Star key={s} className="w-4 h-4 text-[#F48C06] fill-[#F48C06]" />)}
+      <h4 className="text-2xl font-bold text-[#2F327D] mb-4 leading-tight">{title}</h4>
+      <p className="text-slate-400 text-base mb-8 leading-relaxed line-clamp-3 font-medium">
+        {desc}
+      </p>
+      <div className="flex items-center gap-1 mb-8">
+        {[1,2,3,4,5].map(s => <Star key={s} className="w-5 h-5 text-[#F48C06] fill-[#F48C06]" />)}
       </div>
       <div className="flex items-center justify-between">
-        <span className="text-xl font-bold text-[#2F327D]">$ {price}</span>
-        <button className="px-10 py-2 border-2 rounded-xl text-xs font-bold transition-all hover:bg-[#49BBBD] hover:text-white" style={{ borderColor: '#49BBBD', color: '#49BBBD' }}>
+        <span className="text-2xl font-bold text-[#2F327D]">$ {price}</span>
+        <button className="px-12 py-3 border-[2px] rounded-2xl text-sm font-extrabold transition-all hover:bg-[#49BBBD] hover:text-white" style={{ borderColor: '#49BBBD', color: '#49BBBD' }}>
           EXPLORE
         </button>
       </div>
@@ -166,49 +176,51 @@ const FeaturedCard: React.FC<{
   </div>
 );
 
-const SectionHeader: React.FC<{ icon: any; title: string }> = ({ icon: Icon, title }) => (
-  <div className="flex justify-between items-center mb-8">
-    <div className="flex items-center gap-3">
-      <Icon className="w-6 h-6 text-[#2F327D]" />
-      <h3 className="text-xl font-bold text-[#2F327D]">{title}</h3>
+const SectionHeader: React.FC<{ icon: React.ElementType; title: string }> = ({ icon: Icon, title }) => (
+  <div className="flex justify-between items-center mb-10">
+    <div className="flex items-center gap-4">
+      <Icon className="w-7 h-7 text-[#2F327D]" />
+      <h3 className="text-2xl font-bold text-[#2F327D]">{title}</h3>
     </div>
-    <button className="text-[#49BBBD] font-bold text-xs flex items-center gap-2 group tracking-widest uppercase">
-      SEE ALL <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+    <button className="text-[#49BBBD] font-bold text-sm flex items-center gap-2 group tracking-widest uppercase">
+      SEE ALL <ArrowRight className="w-5 h-5 group-hover:translate-x-2 transition-transform" />
     </button>
   </div>
 );
 
 const categoryColors = [
-  { label: 'Ut Sed Eros', color: '#FFFFFF', bgColor: '#FF782D' },
-  { label: 'Curabitur Egestas', color: '#FFFFFF', bgColor: '#FF8585' },
-  { label: 'Quisque Conseq...', color: '#FFFFFF', bgColor: '#A3662B' },
-  { label: 'Cras Convallis', color: '#FFFFFF', bgColor: '#FFB800' },
-  { label: 'Vestibulum fauci...', color: '#FFFFFF', bgColor: '#A66CFF' },
-  { label: 'Ut Sed Eros', color: '#FFFFFF', bgColor: '#00B0FF' },
-  { label: 'Vestibulum fauci...', color: '#FFFFFF', bgColor: '#6BC785' },
+  { label: 'Ut Sed Eros', bgColor: '#FF782D' },
+  { label: 'Curabitur Egestas', bgColor: '#FF8585' },
+  { label: 'Quisque Conseq...', bgColor: '#A3662B' },
+  { label: 'Cras Convallis', bgColor: '#FFB800' },
+  { label: 'Vestibulum fauci...', bgColor: '#A66CFF' },
+  { label: 'Ut Sed Eros', bgColor: '#00B0FF' },
+  { label: 'Vestibulum fauci...', bgColor: '#6BC785' },
 ];
 
 export const CourseExplorer: React.FC = () => (
-  <section className="py-24 bg-[#F2F7FB] overflow-hidden">
+  <section className="py-32 bg-[#F2F7FB] overflow-hidden">
     <div className="max-w-7xl mx-auto px-6">
       {/* Header */}
-      <div className="mb-20">
-        <h2 className="text-4xl font-bold text-[#2F327D] mb-4">Explore Course</h2>
-        <p className="text-slate-400 max-w-lg">Ut sed eros finibus, placerat orci id, dapibus.</p>
+      <div className="mb-24">
+        <h2 className="text-5xl font-extrabold text-[#2F327D] mb-6">Explore Course</h2>
+        <p className="text-slate-400 text-lg max-w-lg font-medium">Ut sed eros finibus, placerat orci id, dapibus.</p>
       </div>
 
-      <div className="space-y-32">
+      <div className="space-y-40">
         {/* Row 1: Lorem Ipsum */}
-        <div>
+        <div className="relative">
           <SectionHeader icon={Palette} title="Lorem Ipsum" />
-          <div className="flex flex-col lg:flex-row items-center gap-12">
-            <div className="hidden lg:flex gap-4">
+          <div className="flex flex-col xl:flex-row items-center gap-16">
+            <div className="hidden xl:flex gap-5 shrink-0">
               {categoryColors.map((cat, i) => (
                 <SlantedTab key={i} {...cat} />
               ))}
             </div>
-            <div className="flex-1 w-full">
-              <FeaturedCard 
+            <div className="flex-1 w-full relative">
+               {/* Decorative background shape as seen in design */}
+               <div className="absolute -bottom-4 -left-4 w-full h-full bg-[#E0F3D7] rounded-[40px] -z-10"></div>
+               <FeaturedCard 
                 image="https://images.unsplash.com/photo-1546069901-ba9599a7e63c?auto=format&fit=crop&q=80&w=600"
                 title="Integer id Orc Sed Ante Tincidunt"
                 desc="Cras convallis lacus orci, tristique tincidunt magna fringilla at faucibus vel. Vestibulum faucibus iaculis eros, et hendrerit magna fringilla at faucibus vel."
@@ -219,10 +231,11 @@ export const CourseExplorer: React.FC = () => (
         </div>
 
         {/* Row 2: Quisque a Consequat */}
-        <div>
+        <div className="relative">
           <SectionHeader icon={Globe} title="Quisque a Consequat" />
-          <div className="relative">
-             <div className="max-w-4xl mx-auto">
+          <div className="relative flex justify-center items-center">
+             <div className="max-w-5xl w-full relative">
+                <div className="absolute -bottom-4 left-1/2 -translate-x-1/2 w-[102%] h-[105%] bg-[#E0F3D7] rounded-[40px] -z-10"></div>
                 <FeaturedCard 
                   borderColor="#D8587E"
                   image="https://images.unsplash.com/photo-1446776811953-b23d57bd21aa?auto=format&fit=crop&q=80&w=600"
@@ -232,20 +245,21 @@ export const CourseExplorer: React.FC = () => (
                 />
              </div>
              {/* Decorative slanted tabs on sides */}
-             <div className="absolute top-1/2 -translate-y-1/2 -left-12 hidden xl:flex gap-3 opacity-50">
+             <div className="absolute top-1/2 -translate-y-1/2 -left-32 hidden xl:flex gap-4 opacity-70 scale-90">
                 {categoryColors.slice(0, 4).map((cat, i) => <SlantedTab key={i} {...cat} />)}
              </div>
-             <div className="absolute top-1/2 -translate-y-1/2 -right-12 hidden xl:flex gap-3 opacity-50">
+             <div className="absolute top-1/2 -translate-y-1/2 -right-32 hidden xl:flex gap-4 opacity-70 scale-90">
                 {categoryColors.slice(4).map((cat, i) => <SlantedTab key={i} {...cat} />)}
              </div>
           </div>
         </div>
 
         {/* Row 3: Aenean Facilisis */}
-        <div>
+        <div className="relative">
           <SectionHeader icon={Award} title="Aenean Facilisis" />
-          <div className="flex flex-col lg:flex-row items-center gap-12">
-            <div className="flex-1 w-full">
+          <div className="flex flex-col xl:flex-row items-center gap-16">
+            <div className="flex-1 w-full relative">
+              <div className="absolute -bottom-4 -right-4 w-full h-full bg-[#E0F3D7] rounded-[40px] -z-10"></div>
               <FeaturedCard 
                 imageOnLeft={false}
                 image="https://images.unsplash.com/photo-1452784444945-3f422708fe5e?auto=format&fit=crop&q=80&w=600"
@@ -254,7 +268,7 @@ export const CourseExplorer: React.FC = () => (
                 price={450}
               />
             </div>
-            <div className="hidden lg:flex gap-4">
+            <div className="hidden xl:flex gap-5 shrink-0">
               {categoryColors.map((cat, i) => (
                 <SlantedTab key={i} {...cat} />
               ))}

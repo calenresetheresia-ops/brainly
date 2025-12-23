@@ -1,29 +1,10 @@
-import React, { useState } from 'react';
-import { Outlet } from 'react-router-dom';
-import Header from './Header';
-import Footer from './Footer';
-import AITutor from './components/AITutor';
 
+import React from 'react';
+
+// This component is currently unused in favor of state-based navigation in App.tsx
+// It remains as a placeholder to prevent import errors if any are present elsewhere.
 const Layout: React.FC = () => {
-  // Fixed state type to include 'blog-detail' to match Header's expectations and satisfy the type system
-  const [currentView, setCurrentView] = useState<'home' | 'blog' | 'login' | 'blog-detail'>('home');
-
-  // Added a wrapper function to handle view changes and satisfy the optional 'mode' parameter in Header's onViewChange prop
-  const handleViewChange = (view: 'home' | 'blog' | 'login' | 'blog-detail', mode?: 'login' | 'register') => {
-    setCurrentView(view);
-  };
-
-  return (
-    <div className="min-h-screen flex flex-col font-['Poppins'] bg-white">
-      {/* Passed the correctly typed currentView and handleViewChange wrapper to the Header component */}
-      <Header currentView={currentView} onViewChange={handleViewChange} />
-      <main className="flex-grow">
-        <Outlet />
-      </main>
-      <Footer />
-      <AITutor />
-    </div>
-  );
+  return null;
 };
 
 export default Layout;
