@@ -5,14 +5,15 @@ import Footer from './Footer';
 import Home from './Home';
 import Blog from './Blog';
 import BlogDetail from './BlogDetail';
+import Courses from './Courses';
 import Login from './Login';
 import AITutor from './components/AITutor';
 
 const App: React.FC = () => {
-  const [currentView, setCurrentView] = useState<'home' | 'blog' | 'login' | 'blog-detail'>('home');
+  const [currentView, setCurrentView] = useState<'home' | 'blog' | 'login' | 'blog-detail' | 'courses'>('home');
   const [preferredAuthMode, setPreferredAuthMode] = useState<'login' | 'register'>('login');
 
-  const handleNavigate = (view: 'home' | 'blog' | 'login' | 'blog-detail', mode?: 'login' | 'register') => {
+  const handleNavigate = (view: 'home' | 'blog' | 'login' | 'blog-detail' | 'courses', mode?: 'login' | 'register') => {
     if (mode) {
       setPreferredAuthMode(mode);
     }
@@ -34,6 +35,7 @@ const App: React.FC = () => {
         {currentView === 'home' && <Home />}
         {currentView === 'blog' && <Blog onBlogClick={() => handleNavigate('blog-detail')} />}
         {currentView === 'blog-detail' && <BlogDetail onBlogClick={() => handleNavigate('blog-detail')} />}
+        {currentView === 'courses' && <Courses />}
         {currentView === 'login' && (
           <Login 
             onViewChange={(view) => handleNavigate(view)} 

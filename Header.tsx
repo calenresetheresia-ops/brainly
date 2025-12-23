@@ -3,8 +3,8 @@ import React, { useState, useEffect } from 'react';
 import { ChevronDown } from 'lucide-react';
 
 interface HeaderProps {
-  currentView: 'home' | 'blog' | 'login' | 'blog-detail';
-  onViewChange: (view: 'home' | 'blog' | 'login' | 'blog-detail', mode?: 'login' | 'register') => void;
+  currentView: 'home' | 'blog' | 'login' | 'blog-detail' | 'courses';
+  onViewChange: (view: 'home' | 'blog' | 'login' | 'blog-detail' | 'courses', mode?: 'login' | 'register') => void;
 }
 
 const Header: React.FC<HeaderProps> = ({ currentView, onViewChange }) => {
@@ -27,7 +27,7 @@ const Header: React.FC<HeaderProps> = ({ currentView, onViewChange }) => {
   const logoBg = isHome ? 'bg-white' : 'bg-primary';
   const logoText = isHome ? 'text-primary' : 'text-white';
 
-  const navigateTo = (view: 'home' | 'blog' | 'login' | 'blog-detail', mode?: 'login' | 'register') => {
+  const navigateTo = (view: 'home' | 'blog' | 'login' | 'blog-detail' | 'courses', mode?: 'login' | 'register') => {
     onViewChange(view, mode);
   };
 
@@ -54,7 +54,13 @@ const Header: React.FC<HeaderProps> = ({ currentView, onViewChange }) => {
             Home
             <div className={`absolute -bottom-1 left-0 h-0.5 w-full rounded-full transition-all ${isHome ? 'bg-current scale-100' : 'bg-primary scale-0 group-hover:scale-100'}`}></div>
           </button>
-          <button className="hover:text-primary transition-colors cursor-pointer">Courses</button>
+          <button 
+            onClick={() => navigateTo('courses')}
+            className={`hover:text-primary transition-colors cursor-pointer relative py-1 group ${currentView === 'courses' ? 'font-bold text-primary' : ''}`}
+          >
+            Courses
+            <div className={`absolute -bottom-1 left-0 h-0.5 w-full bg-primary rounded-full transition-all ${currentView === 'courses' ? 'scale-100' : 'scale-0 group-hover:scale-100'}`}></div>
+          </button>
           <button className="hover:text-primary transition-colors cursor-pointer">Careers</button>
           <button 
             onClick={() => navigateTo('blog')} 
@@ -67,7 +73,7 @@ const Header: React.FC<HeaderProps> = ({ currentView, onViewChange }) => {
         </div>
 
         <div className="flex items-center gap-4">
-          {currentView === 'blog' || currentView === 'blog-detail' ? (
+          {currentView !== 'home' && currentView !== 'login' ? (
             <div className="flex items-center gap-3 cursor-pointer group">
               <img src="https://i.pravatar.cc/150?u=lina" alt="Lina" className="w-10 h-10 rounded-full border border-slate-200 shadow-sm" />
               <div className="hidden lg:flex items-center gap-1">
