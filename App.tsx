@@ -1,20 +1,23 @@
 
-import React from 'react';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import Layout from './Layout';
+import React, { useState } from 'react';
+import Header from './Header';
+import Footer from './Footer';
 import Home from './Home';
 import Blog from './Blog';
+import AITutor from './components/AITutor';
 
 const App: React.FC = () => {
+  const [currentView, setCurrentView] = useState<'home' | 'blog'>('home');
+
   return (
-    <Router>
-      <Routes>
-        <Route path="/" element={<Layout />}>
-          <Route index element={<Home />} />
-          <Route path="blog" element={<Blog />} />
-        </Route>
-      </Routes>
-    </Router>
+    <div className="min-h-screen flex flex-col font-['Poppins'] bg-white">
+      <Header currentView={currentView} onViewChange={setCurrentView} />
+      <main className="flex-grow">
+        {currentView === 'home' ? <Home /> : <Blog />}
+      </main>
+      <Footer />
+      <AITutor />
+    </div>
   );
 };
 

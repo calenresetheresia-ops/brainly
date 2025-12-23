@@ -1,12 +1,15 @@
 
 import React, { useState, useEffect } from 'react';
-import { NavLink, useLocation } from 'react-router-dom';
 import { ChevronDown } from 'lucide-react';
 
-const Header: React.FC = () => {
+interface HeaderProps {
+  currentView: 'home' | 'blog';
+  onViewChange: (view: 'home' | 'blog') => void;
+}
+
+const Header: React.FC<HeaderProps> = ({ currentView, onViewChange }) => {
   const [isScrolled, setIsScrolled] = useState(false);
-  const location = useLocation();
-  const isHome = location.pathname === '/';
+  const isHome = currentView === 'home';
 
   useEffect(() => {
     const handleScroll = () => {
@@ -16,54 +19,58 @@ const Header: React.FC = () => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  const headerBg = isHome 
-    ? (isScrolled ? 'bg-primary/95 backdrop-blur-md shadow-lg py-3' : 'bg-transparent py-5') 
-    : 'bg-white shadow-sm py-4';
+  // Determine header background based on scroll and current view
+  // Added backdrop-blur-md to the transparent state as well for a consistent "glassy" feel
+  const headerBg = isScrolled 
+    ? (isHome ? 'bg-primary/95 backdrop-blur-md shadow-lg py-3' : 'bg-white/95 backdrop-blur-md shadow-sm py-3') 
+    : 'bg-transparent backdrop-blur-md py-5';
   
+  // Text and logo colors depend on the page and transparency
+  // Home page uses white text on teal. Blog page uses dark text on light blue/white.
   const textColor = isHome ? 'text-white' : 'text-[#2F327D]';
   const logoBg = isHome ? 'bg-white' : 'bg-primary';
   const logoText = isHome ? 'text-primary' : 'text-white';
+
+  const navigateTo = (view: 'home' | 'blog') => {
+    onViewChange(view);
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
 
   return (
     <header className={`w-full fixed top-0 left-0 z-50 transition-all duration-300 ${headerBg}`}>
       <nav className="flex items-center justify-between px-6 max-w-7xl mx-auto">
         {/* Logo Section */}
-        <NavLink to="/" className="flex items-center gap-2">
+        <div 
+          onClick={() => navigateTo('home')} 
+          className="flex items-center gap-2 cursor-pointer"
+        >
           <div className={`p-1 rounded-lg transition-colors ${logoBg}`}>
             <div className={`w-8 h-8 rounded flex items-center justify-center font-bold transition-colors ${logoText}`}>
               T
             </div>
           </div>
           <span className={`text-2xl font-bold tracking-tight transition-colors ${textColor}`}>TOTC</span>
-        </NavLink>
+        </div>
         
         {/* Desktop Navigation Links */}
         <div className={`hidden md:flex items-center gap-10 font-medium text-sm transition-colors ${textColor}`}>
-          <NavLink 
-            to="/" 
-            className={({ isActive }) => `relative py-1 group transition-all ${isActive ? 'font-bold' : 'hover:text-primary'}`}
+          <button 
+            onClick={() => navigateTo('home')} 
+            className={`relative py-1 group transition-all ${isHome ? 'font-bold' : 'hover:text-primary'}`}
           >
-            {({ isActive }) => (
-              <>
-                Home
-                <div className={`absolute -bottom-1 left-0 h-0.5 w-full rounded-full transition-all ${isActive ? 'bg-current scale-100' : 'bg-primary scale-0 group-hover:scale-100'}`}></div>
-              </>
-            )}
-          </NavLink>
-          <a href="#" className="hover:text-primary transition-colors">Courses</a>
-          <a href="#" className="hover:text-primary transition-colors">Careers</a>
-          <NavLink 
-            to="/blog" 
-            className={({ isActive }) => `relative py-1 group transition-all ${isActive ? 'font-bold text-primary' : 'hover:text-primary'}`}
+            Home
+            <div className={`absolute -bottom-1 left-0 h-0.5 w-full rounded-full transition-all ${isHome ? 'bg-current scale-100' : 'bg-primary scale-0 group-hover:scale-100'}`}></div>
+          </button>
+          <button className="hover:text-primary transition-colors cursor-pointer">Courses</button>
+          <button className="hover:text-primary transition-colors cursor-pointer">Careers</button>
+          <button 
+            onClick={() => navigateTo('blog')} 
+            className={`relative py-1 group transition-all ${currentView === 'blog' ? 'font-bold text-primary' : 'hover:text-primary'}`}
           >
-            {({ isActive }) => (
-              <>
-                Blog
-                <div className={`absolute -bottom-1 left-0 h-0.5 w-full bg-primary rounded-full transition-all ${isActive ? 'scale-100' : 'scale-0 group-hover:scale-100'}`}></div>
-              </>
-            )}
-          </NavLink>
-          <a href="#" className="hover:text-primary transition-colors">About Us</a>
+            Blog
+            <div className={`absolute -bottom-1 left-0 h-0.5 w-full bg-primary rounded-full transition-all ${currentView === 'blog' ? 'scale-100' : 'scale-0 group-hover:scale-100'}`}></div>
+          </button>
+          <button className="hover:text-primary transition-colors cursor-pointer">About Us</button>
         </div>
 
         {/* Action Buttons / Profile Section */}
