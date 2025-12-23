@@ -2,13 +2,17 @@
 import React from 'react';
 import { BlogHero, ReadingBlogList, RelatedBlogList, MarketingArticleList } from './BlogSections';
 
-const Blog: React.FC = () => {
+interface BlogProps {
+  onBlogClick: () => void;
+}
+
+const Blog: React.FC<BlogProps> = ({ onBlogClick }) => {
   return (
     <div className="flex flex-col">
-      <BlogHero />
+      <BlogHero onBlogClick={onBlogClick} />
       <ReadingBlogList />
-      <RelatedBlogList />
-      <MarketingArticleList />
+      <RelatedBlogList onBlogClick={onBlogClick} />
+      <MarketingArticleList onBlogClick={onBlogClick} />
     </div>
   );
 };
