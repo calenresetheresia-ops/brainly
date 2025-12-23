@@ -1,0 +1,8 @@
+{
+  "name": "EduVibe - E-Learning & Community Platform",
+  "description": "A premium e-learning and community platform featuring course management, community discussions, and an AI-powered personal tutor.",
+  "requestFramePermissions": [
+    "camera",
+    "microphone"
+  ]
+}
