@@ -2,7 +2,8 @@
 import React from 'react';
 import { 
   Play, Search, ArrowRight, Star, FileText, Calendar, Users, 
-  CheckCircle2, Plus, MessageSquare, Sparkles, User, Bell, Menu
+  CheckCircle2, Plus, MessageSquare, Sparkles, User, Bell, Menu,
+  Layout, Move, UserCheck, ShieldCheck, ClipboardCheck, MessageCircle
 } from 'lucide-react';
 import { STATS, FEATURES, COURSES_DATA, NEWS } from './constants';
 import AITutor from './components/AITutor';
@@ -171,7 +172,7 @@ const App: React.FC = () => {
         </div>
       </section>
 
-      {/* Classroom Features */}
+      {/* Classroom Features (Physical Classroom...) - Moved before 'Our Features' */}
       <section className="py-24 bg-[#fbfbfb]">
         <div className="max-w-7xl mx-auto px-6 grid lg:grid-cols-2 gap-20 items-center">
           <div>
@@ -194,6 +195,207 @@ const App: React.FC = () => {
               </div>
             </div>
             <div className="absolute -bottom-10 -right-10 w-full h-full bg-primary/10 rounded-[40px] -z-10"></div>
+          </div>
+        </div>
+      </section>
+
+      {/* Our Features Section */}
+      <section className="py-24 overflow-hidden">
+        <div className="max-w-7xl mx-auto px-6">
+          <div className="text-center mb-24">
+            <h2 className="text-4xl font-bold mb-4">Our <span className="text-primary">Features</span></h2>
+            <p className="text-slate-500">This very extraordinary feature, can make learning activities more efficient</p>
+          </div>
+
+          {/* Feature 1: User Interface */}
+          <div className="grid lg:grid-cols-2 gap-20 items-center mb-40">
+            <div className="relative">
+              {/* Background Accents */}
+              <div className="absolute -top-10 -left-10 w-40 h-40 bg-primary/20 rounded-full blur-3xl animate-pulse"></div>
+              <div className="absolute -bottom-10 right-0 w-32 h-32 bg-secondary/10 rounded-full blur-2xl"></div>
+              
+              <div className="relative z-10 p-4 bg-white rounded-3xl shadow-2xl border border-slate-100">
+                <div className="flex gap-4 mb-4">
+                  <div className="flex-1 bg-slate-100 rounded-2xl aspect-square overflow-hidden border-4 border-white shadow-inner">
+                    <img src="https://i.pravatar.cc/300?u=1" className="w-full h-full object-cover" />
+                  </div>
+                  <div className="flex-1 bg-slate-100 rounded-2xl aspect-square overflow-hidden border-4 border-white shadow-inner">
+                    <img src="https://i.pravatar.cc/300?u=2" className="w-full h-full object-cover" />
+                  </div>
+                </div>
+                <div className="flex gap-4">
+                  <div className="flex-1 bg-slate-100 rounded-2xl aspect-square overflow-hidden border-4 border-white shadow-inner">
+                    <img src="https://i.pravatar.cc/300?u=3" className="w-full h-full object-cover" />
+                  </div>
+                  <div className="flex-1 bg-slate-100 rounded-2xl aspect-square overflow-hidden border-4 border-white shadow-inner">
+                    <img src="https://i.pravatar.cc/300?u=4" className="w-full h-full object-cover" />
+                  </div>
+                </div>
+                {/* Overlay buttons */}
+                <div className="absolute bottom-10 left-10 flex gap-2">
+                  <button className="px-4 py-2 bg-indigo-500 text-white rounded-full text-xs font-bold shadow-lg">Present</button>
+                  <button className="px-4 py-2 bg-[#D8587E] text-white rounded-full text-xs font-bold shadow-lg">Call</button>
+                </div>
+              </div>
+            </div>
+            <div>
+              <h3 className="text-3xl font-bold text-[#2F327D] mb-8 leading-tight">
+                A <span className="text-primary">user interface</span> designed for the classroom
+              </h3>
+              <div className="space-y-8">
+                {[
+                  { icon: Layout, text: "Teachers don't get lost in the grid view and have a dedicated Podium space.", color: "bg-indigo-50 text-indigo-500" },
+                  { icon: Move, text: "TA's and presenters can be moved to the front of the class.", color: "bg-secondary/10 text-secondary" },
+                  { icon: Users, text: "Teachers can easily see all students and class data at one time.", color: "bg-primary/10 text-primary" }
+                ].map((item, idx) => (
+                  <div key={idx} className="flex gap-6 items-start">
+                    <div className={`w-12 h-12 rounded-xl flex items-center justify-center flex-shrink-0 shadow-sm ${item.color}`}>
+                      <item.icon className="w-6 h-6" />
+                    </div>
+                    <p className="text-slate-500 leading-relaxed text-sm pt-1">{item.text}</p>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+
+          {/* Feature 2: Tools for Teachers */}
+          <div className="grid lg:grid-cols-2 gap-20 items-center mb-40">
+            <div className="order-2 lg:order-1">
+              <h3 className="text-3xl font-bold text-[#2F327D] mb-6 leading-tight">
+                <span className="text-primary">Tools</span> For Teachers And Learners
+              </h3>
+              <p className="text-slate-500 leading-relaxed mb-8">
+                Class has a dynamic set of teaching tools built to be deployed and used during class. Teachers can handout assignments in real-time for students to complete and submit.
+              </p>
+            </div>
+            <div className="order-1 lg:order-2 relative">
+               <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-80 h-80 bg-secondary/10 rounded-full blur-3xl -z-10"></div>
+               <img src="https://images.unsplash.com/photo-1544391559-71bc1400a2cc?auto=format&fit=crop&q=80&w=800" className="rounded-3xl shadow-2xl relative z-10" alt="Student studying" />
+               <div className="absolute -top-6 -right-6 bg-white p-4 rounded-2xl shadow-xl flex items-center gap-3 z-20 animate-bounce duration-[3000ms]">
+                 <div className="w-10 h-10 bg-indigo-100 rounded-full flex items-center justify-center text-indigo-500">
+                   <UserCheck className="w-6 h-6" />
+                 </div>
+                 <span className="text-xs font-bold text-[#2F327D]">Assignment Handout</span>
+               </div>
+            </div>
+          </div>
+
+          {/* Feature 3: Assessments */}
+          <div className="grid lg:grid-cols-2 gap-20 items-center mb-40">
+            <div className="relative">
+               <div className="absolute -bottom-10 left-1/4 w-60 h-60 bg-primary/10 rounded-full blur-3xl -z-10"></div>
+               <div className="bg-white p-8 rounded-[40px] shadow-2xl border border-slate-50 relative z-10 max-w-sm mx-auto">
+                 <div className="flex justify-between items-center mb-6">
+                    <span className="px-3 py-1 bg-indigo-50 text-indigo-500 text-[10px] font-bold rounded-full">Question 1</span>
+                    <div className="flex gap-2">
+                      <div className="w-6 h-6 rounded-full bg-red-50 text-red-500 flex items-center justify-center text-[10px] font-bold">✕</div>
+                      <div className="w-6 h-6 rounded-full bg-green-50 text-green-500 flex items-center justify-center text-[10px] font-bold">✓</div>
+                    </div>
+                 </div>
+                 <h4 className="text-lg font-bold text-[#2F327D] mb-6">True or false? This play takes place in Italy</h4>
+                 <div className="rounded-2xl overflow-hidden mb-6">
+                   <img src="https://images.unsplash.com/photo-1516483638261-f4dbaf036963?auto=format&fit=crop&q=80&w=400" className="w-full" />
+                 </div>
+                 <div className="p-4 bg-primary/5 rounded-xl flex items-center justify-center gap-3">
+                    <ClipboardCheck className="w-5 h-5 text-primary" />
+                    <span className="text-[10px] font-bold text-primary uppercase">Your answer was sent successfully</span>
+                 </div>
+               </div>
+            </div>
+            <div>
+              <h3 className="text-3xl font-bold text-[#2F327D] mb-6 leading-tight">
+                Assessments, <span className="text-primary">Quizzes</span>, Tests
+              </h3>
+              <p className="text-slate-500 leading-relaxed">
+                Easily launch live assignments, quizzes, and tests. Student results are automatically entered in the online gradebook.
+              </p>
+            </div>
+          </div>
+
+          {/* Feature 4: Class Management */}
+          <div className="grid lg:grid-cols-2 gap-20 items-center mb-40">
+            <div className="order-2 lg:order-1">
+              <h3 className="text-3xl font-bold text-[#2F327D] mb-6 leading-tight">
+                <span className="text-primary">Class Management</span> Tools for Educators
+              </h3>
+              <p className="text-slate-500 leading-relaxed">
+                Class provides tools to help run and manage the class such as Class Roster, Attendance, and more. With the Gradebook, teachers can review and grade tests and quizzes in real-time.
+              </p>
+            </div>
+            <div className="order-1 lg:order-2 relative">
+               <div className="bg-white p-8 rounded-[40px] shadow-2xl border border-slate-50 relative z-10">
+                 <div className="flex items-center justify-between mb-8">
+                    <h4 className="font-bold text-[#2F327D]">GradeBook</h4>
+                    <button className="px-4 py-2 bg-indigo-500 text-white text-[10px] font-bold rounded-xl shadow-md">Export</button>
+                 </div>
+                 <div className="space-y-6">
+                    {[
+                      { name: "John Doe", progress: 85, color: "bg-green-400" },
+                      { name: "Jane Smith", progress: 70, color: "bg-primary" },
+                      { name: "Michael Vane", progress: 95, color: "bg-secondary" }
+                    ].map((s, idx) => (
+                      <div key={idx} className="flex items-center gap-4">
+                        <img src={`https://i.pravatar.cc/100?u=${idx}`} className="w-8 h-8 rounded-full" />
+                        <div className="flex-1">
+                          <div className="flex justify-between text-[10px] font-bold mb-1">
+                            <span>{s.name}</span>
+                            <span>{s.progress}%</span>
+                          </div>
+                          <div className="w-full h-1.5 bg-slate-100 rounded-full overflow-hidden">
+                            <div className={`h-full ${s.color}`} style={{ width: `${s.progress}%` }}></div>
+                          </div>
+                        </div>
+                      </div>
+                    ))}
+                 </div>
+               </div>
+               {/* Decorative dots */}
+               <div className="absolute -top-10 -right-10 flex flex-wrap w-20 gap-2 opacity-20">
+                 {[...Array(9)].map((_, i) => <div key={i} className="w-2 h-2 rounded-full bg-primary"></div>)}
+               </div>
+            </div>
+          </div>
+
+          {/* Feature 5: One-on-One */}
+          <div className="grid lg:grid-cols-2 gap-20 items-center">
+            <div className="relative">
+               <div className="absolute inset-0 bg-indigo-500/5 rounded-full blur-3xl -z-10 transform -scale-x-100"></div>
+               <div className="relative z-10 bg-white p-6 rounded-3xl shadow-2xl border border-slate-100">
+                 <div className="flex items-center gap-3 mb-6">
+                    <div className="w-10 h-10 bg-indigo-500/10 rounded-xl flex items-center justify-center text-indigo-500">
+                      <MessageCircle className="w-6 h-6" />
+                    </div>
+                    <div>
+                      <h4 className="text-sm font-bold text-[#2F327D]">Private Discussion</h4>
+                      <p className="text-[10px] text-slate-400">Your video can't be seen by others</p>
+                    </div>
+                 </div>
+                 <div className="flex gap-4">
+                    <div className="flex-1 rounded-2xl overflow-hidden aspect-square shadow-md ring-4 ring-slate-50">
+                      <img src="https://i.pravatar.cc/150?u=instructor" className="w-full h-full object-cover" />
+                    </div>
+                    <div className="flex-1 rounded-2xl overflow-hidden aspect-square shadow-md ring-4 ring-slate-50">
+                      <img src="https://i.pravatar.cc/150?u=student" className="w-full h-full object-cover" />
+                    </div>
+                 </div>
+                 <button className="w-full mt-6 py-3 bg-[#D8587E] text-white rounded-2xl text-xs font-bold shadow-lg hover:opacity-90 transition-opacity">End Discussion</button>
+               </div>
+            </div>
+            <div>
+              <h3 className="text-3xl font-bold text-[#2F327D] mb-6 leading-tight">
+                One-on-One <span className="text-primary">Discussions</span>
+              </h3>
+              <p className="text-slate-500 leading-relaxed">
+                Teachers and teacher assistants can talk with students privately without leaving the Zoom environment.
+              </p>
+            </div>
+          </div>
+
+          <div className="text-center mt-32">
+            <button className="px-10 py-4 border border-primary text-primary rounded-full font-bold hover:bg-primary hover:text-white transition-all transform hover:scale-105 active:scale-95">
+              See more features
+            </button>
           </div>
         </div>
       </section>
