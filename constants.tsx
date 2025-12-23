@@ -87,3 +87,78 @@ export const NEWS = [
     image: 'https://picsum.photos/seed/news3/300/200'
   }
 ];
+
+export const BLOG_CATEGORIES = [
+  { title: 'UX/UI', image: 'https://picsum.photos/seed/blog_ux/400/300' },
+  { title: 'React', image: 'https://picsum.photos/seed/blog_react/400/300' },
+  { title: 'PHP', image: 'https://picsum.photos/seed/blog_php/400/300' },
+  { title: 'JavaScript', image: 'https://picsum.photos/seed/blog_js/400/300' },
+];
+
+export const RELATED_BLOGS = [
+  {
+    id: 'rb1',
+    title: 'Class adds $30 million to its balance sheet for a Zoom-friendly edtech solution',
+    author: 'Lina',
+    authorAvatar: 'https://i.pravatar.cc/150?u=lina',
+    views: '251,232',
+    image: 'https://picsum.photos/seed/rel1/600/400',
+    desc: 'Class, launched less than a year ago by Blackboard co-founder Michael Chasen, integrates exclusively...'
+  },
+  {
+    id: 'rb2',
+    title: 'Class adds $30 million to its balance sheet for a Zoom-friendly edtech solution',
+    author: 'Lina',
+    authorAvatar: 'https://i.pravatar.cc/150?u=lina',
+    views: '251,232',
+    image: 'https://picsum.photos/seed/rel2/600/400',
+    desc: 'Class, launched less than a year ago by Blackboard co-founder Michael Chasen, integrates exclusively...'
+  }
+];
+
+export const MARKETING_ARTICLES = [
+  {
+    id: 'm1',
+    title: 'AWS Certified solutions Architect',
+    desc: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor',
+    category: 'Design',
+    duration: '3 Month',
+    price: 80,
+    oldPrice: 100,
+    author: 'Lina',
+    image: 'https://picsum.photos/seed/ma1/400/300'
+  },
+  {
+    id: 'm2',
+    title: 'AWS Certified solutions Architect',
+    desc: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor',
+    category: 'Design',
+    duration: '3 Month',
+    price: 80,
+    oldPrice: 100,
+    author: 'Lina',
+    image: 'https://picsum.photos/seed/ma2/400/300'
+  },
+  {
+    id: 'm3',
+    title: 'AWS Certified solutions Architect',
+    desc: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor',
+    category: 'Design',
+    duration: '3 Month',
+    price: 80,
+    oldPrice: 100,
+    author: 'Lina',
+    image: 'https://picsum.photos/seed/ma3/400/300'
+  },
+  {
+    id: 'm4',
+    title: 'AWS Certified solutions Architect',
+    desc: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor',
+    category: 'Design',
+    duration: '3 Month',
+    price: 80,
+    oldPrice: 100,
+    author: 'Lina',
+    image: 'https://picsum.photos/seed/ma4/400/300'
+  }
+];
